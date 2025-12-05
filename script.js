@@ -1,4 +1,4 @@
-// Import Three.js and CSS2DRenderer from CDN
+// Import Three.js and CSS2DRenderer from CDN (works in browser)
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js';
 import { CSS2DRenderer, CSS2DObject } from 'https://cdn.jsdelivr.net/npm/three@0.158/examples/jsm/renderers/CSS2DRenderer.js';
 
@@ -43,10 +43,10 @@ const ground = new THREE.Mesh(groundGeometry, groundMaterial);
 ground.rotation.x = -Math.PI / 2;
 scene.add(ground);
 
-// === Primitive 3D Car ===
+// === Cute Primitive 3D Car ===
 const car = new THREE.Group();
 
-// Body
+// Car body
 const bodyGeom = new THREE.BoxGeometry(4, 1.5, 2);
 const bodyMat = new THREE.MeshStandardMaterial({ color: 0xff69b4 });
 const body = new THREE.Mesh(bodyGeom, bodyMat);
@@ -107,11 +107,9 @@ const carSpeed = 0.2;
 const carTurnSpeed = 0.03;
 
 function moveCar() {
-  // Turn
   if (keys.a) car.rotation.y += carTurnSpeed;
   if (keys.d) car.rotation.y -= carTurnSpeed;
 
-  // Move along direction
   const direction = new THREE.Vector3(0, 0, -1).applyEuler(car.rotation);
   if (keys.w) car.position.add(direction.clone().multiplyScalar(carSpeed));
   if (keys.s) car.position.add(direction.clone().multiplyScalar(-carSpeed));
