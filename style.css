@@ -9,7 +9,6 @@ canvas {
   height: 100%;
 }
 
-/* Optional label styling */
 .label {
-  pointer-events: none; /* prevents blocking input */
+  pointer-events: none;
 }
