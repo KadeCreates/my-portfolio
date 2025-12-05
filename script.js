@@ -1,49 +1,50 @@
-// === Scene Setup ===
+// script.js
+
+// === Setup Scene, Camera, Renderer ===
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xBFEFFF); // cute sky-blue
 
 const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
 );
-camera.position.set(0, 5, 10);
 
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({
+  canvas: document.querySelector("#bg"),
+});
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.getElementById("intro").appendChild(renderer.domElement);
+camera.position.setZ(30);
 
-// === Lighting ===
-const ambient = new THREE.AmbientLight(0xffffff, 0.8);
-scene.add(ambient);
-
-const directional = new THREE.DirectionalLight(0xffffff, 1);
-directional.position.set(10, 20, 10);
-scene.add(directional);
-
-// === Controls (TEMP for testing) ===
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-// === Placeholder Cube (TEMP until we add car model) ===
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshStandardMaterial({ color: 0xff69b4 });
+// === Add a rotating cube (starter object) ===
+const geometry = new THREE.BoxGeometry(10, 10, 10);
+const material = new THREE.MeshStandardMaterial({ color: 0x00ffea });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
+// === Add lights ===
+const pointLight = new THREE.PointLight(0xffffff, 1);
+pointLight.position.set(20, 20, 20);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(pointLight, ambientLight);
+
 // === Animation Loop ===
 function animate() {
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-    cube.rotation.y += 0.01;
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
 
-    renderer.render(scene, camera);
+  renderer.render(scene, camera);
 }
+
 animate();
 
-// === Resize Handling ===
+// === Resize handling ===
 window.addEventListener("resize", () => {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 });
