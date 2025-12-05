@@ -1,4 +1,4 @@
-// Import Three.js as ES module
+// Import Three.js as a module
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js";
 
 // === Scene Setup ===
@@ -28,7 +28,7 @@ const pointLight = new THREE.PointLight(0xffffff, 1);
 pointLight.position.set(20, 20, 20);
 scene.add(ambientLight, pointLight);
 
-// === Sample Cube ===
+// === Sample Cube (will later be replaced with 3D car) ===
 const geometry = new THREE.BoxGeometry(5, 5, 5);
 const material = new THREE.MeshStandardMaterial({ color: 0x00ffea });
 const cube = new THREE.Mesh(geometry, material);

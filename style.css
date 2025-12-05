@@ -1,8 +1,12 @@
+/* Make body margin 0 and hide scrollbars */
 body {
   margin: 0;
   overflow: hidden;
 }
 
+/* Canvas fills entire screen */
 canvas {
   display: block;
+  width: 100%;
+  height: 100%;
 }
