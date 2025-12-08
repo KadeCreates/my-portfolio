@@ -7,7 +7,7 @@ body, html {
   font-family: Arial, sans-serif;
   background: black;
   color: white;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* Landing Page */
@@ -27,36 +27,59 @@ body, html {
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-/* Hidden Class */
+/* Hidden */
 .hidden {
   display: none;
 }
 
-/* Portfolio Content */
-#portfolio {
+/* Game Container */
+#game-container {
+  position: relative;
   width: 100%;
-  background: black;
-  padding: 50px 20px;
+  height: 100vh;
 }
 
-.project {
-  display: flex;
-  align-items: center;
-  margin: 50px 0;
+/* Road */
+#road {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 100px;
+  height: 3000px; /* long road */
+  background: #111;
+  transform: translateX(-50%);
 }
 
-.project img {
-  width: 300px;
-  margin-right: 30px;
+/* Car */
+#car {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  background: #ff69b4;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
+/* Portfolio Elements */
+.portfolio {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.portfolio img {
+  width: 200px;
   border: 2px solid white;
-  transition: transform 0.3s ease;
+  display: block;
+  margin-bottom: 10px;
 }
 
-.project img:hover {
-  transform: scale(1.05);
+.portfolio.left {
+  left: calc(50% - 150px - 100px); /* road center - offset - image width/2 */
 }
 
-.project p {
-  max-width: 600px;
-  font-size: 1.2rem;
+.portfolio.right {
+  left: calc(50% + 100px + 50px); /* road center + road width/2 + margin */
 }
