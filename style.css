@@ -9,6 +9,10 @@ canvas {
   height: 100%;
 }
 
+/* Floating text labels */
 .label {
   pointer-events: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
